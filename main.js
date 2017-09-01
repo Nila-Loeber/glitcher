@@ -1,6 +1,7 @@
 var express = require('express');
 var multer = require('multer');
 var bodyParser = require('body-parser');
+var MulterAzureStorage = require('multer-azure-storage')
 
 var app = express();
 app.use(express.static('public'));
@@ -27,18 +28,20 @@ app.post("/api/upload", function(req, res) {
 
 
 
-var storage = multer.diskStorage({  
-         destination: function(req, file, callback) {
-             callback(null, "./images");
-         },
-         filename: function(req, file, callback) {   
-             callback(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
-         }
-     });
 
-var upload = multer({      
-             storage: storage
-         }).array("imgUploader", 3); //Field name and max count
+var upload = multer({
+    storage: new MulterAzureStorage({
+    azureStorageConnectionString: process.env.azureblob_connectionstring,
+    azureStorageAccessKey: process.env.azureblob_key,
+    azureStorageAccount: process.env.azureblob_storageaccount,
+    containerName: process.env.azureblob_containername,
+    containerSecurity: process.azureblob_containersecurity
+  }),name: "test.jpg"
+}).array("imgUploader", 3);
+
+// var upload = multer({      
+//              storage: storage
+//          }).array("imgUploader", 3); //Field name and max count
 
 
 
