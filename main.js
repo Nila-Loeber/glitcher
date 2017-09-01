@@ -20,13 +20,19 @@ app.get('/api/greeter', function(req, res){
 app.post("/api/upload", function(req, res) {   
          upload(req, res, function(err) {
              if (err) {
-                 return res.end("Something went wrong!");
+                 return res.end(err);
              }    
              return res.end("File uploaded sucessfully!.");
          });    
      });
 
 
+// Todo: 
+// Control names
+// List images to give user a selection
+// Implement glitch parameter ui
+// Implement actual glitching 
+// Implement image download
 
 
 var upload = multer({
