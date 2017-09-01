@@ -18,6 +18,11 @@
   },
   "homepage": "https://github.com/NilsL/glitcher#readme",
   "dependencies": {
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "body-parser": "^1.15.2",
+    "multer": "^1.2.0"
+  },
+  "devDependencies": {
+    "reload": "^2.2.2"
   }
 }

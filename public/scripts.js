@@ -10,8 +10,8 @@ function submitForm(){
  
     $.ajax({
         type: "GET",
-        url: "/hello",
-        data: "param=" + name,
+        url: "/api/greeter",
+        data: "name=" + name,
         success : function(text){
                 formSuccess(text);
         }
